@@ -1,26 +1,36 @@
-const express = require('express');
-const path = require('node:path');
-const app = express();
+import fs from "fs";
+import http from "http";
 
-app.use(express.static(path.join(__dirname, 'public')));
+const server = http.createServer((req, res) => {
+	res.setHeader("Content-Type", "text/html");
+	let path = "./public/";
 
-app.get('/', (req,res) => {
-  res.sendFile(`${__dirname}/public/index.html`);
+	switch (req.url) {
+		case "/":
+			path += "index.html";
+      res.statusCode = 200;
+			break;
+
+    case "/about":
+      path += "about.html";
+      res.statusCode = 200;
+      break;
+
+    case "/contact-me":
+      path += "contact-me.html";
+      res.statusCode = 200;
+      break;
+
+		default:
+      path += "404.html";
+      res.statusCode = 404;
+			break;
+	}
+
+	fs.readFile(path, (err, data) => {
+		err ? console.log(err) : res.end(data);
+	});
 });
-
-app.get('/about', (req,res) => {
-  res.sendFile(`${__dirname}/public/about.html`);
-});
-
-app.get('/contact-me', (req,res) => {
-  res.sendFile(`${__dirname}/public/contact-me.html`);
-});
-
-app.use((req,res) => {
-  res.status(404);
-  res.sendFile(`${__dirname}/public/404.html`);
-});
-
-app.listen(8080, () => {
-  console.log('Server is running on port 8080');
+server.listen(8080, "localhost", () => {
+	console.log("Server running at port 8080");
 });
