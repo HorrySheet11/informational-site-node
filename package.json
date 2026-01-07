@@ -1,0 +1,22 @@
+{
+  "name": "informational-site-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HorrySheet11/informational-site-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HorrySheet11/informational-site-node/issues"
+  },
+  "homepage": "https://github.com/HorrySheet11/informational-site-node#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
